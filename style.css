@@ -1,0 +1,17 @@
+.start-score {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+button {
+  margin: 10px 30px;
+  padding: 0 10px;
+}
+
+.grid {
+  margin: 0 auto;
+  height: 500px;
+  width: 250px;
+  background-color: yellow;
+}
