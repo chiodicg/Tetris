@@ -54,8 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentPosition = 4
   let current = theTetrominoes[0][0]
 
-  console.log(current)
-
   //draw the first rotation of the first tetromino
   function draw() {
     current.forEach(index => {
