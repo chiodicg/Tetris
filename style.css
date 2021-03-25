@@ -25,10 +25,10 @@ button {
   height: 480px;
   margin: 0 auto;
   width: 240px;
+  background-color: rgba(234,234,234,0.3);
 }
 
 .grid div {
-  background: rgba(234,234,234,0.3);
   height: 20px;
   width: 20px;
 }
@@ -41,4 +41,8 @@ footer {
 
 footer a {
   color: black;
+}
+
+.tetromino {
+  background-color: blue;
 }
