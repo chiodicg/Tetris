@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Make the Tetrominoes move down every second
-  timerId = setInterval(moveDown, 1000)
+  timerId = setInterval(moveDown, 800)
 
   function moveDown() {
     undraw()
@@ -91,6 +91,59 @@ document.addEventListener('DOMContentLoaded', () => {
       currentTetromino = theTetrominoes[randomTetromino][currentRotation]
       draw()
     }
+  }
+
+  // Assign function to keycodes
+  function control(e) {
+    if (e.keyCode === 37) {
+      // Move left
+      moveLeft()
+    } else if (e.keyCode === 38) {
+      // Rotate
+      rotate()
+    } else if (e.keyCode === 39) {
+      // Move right
+      moveRight()
+    } else if (e.keyCode === 40) {
+      // Move down faster
+    }
+  }
+  document.addEventListener('keyup', control)
+
+  // Moving left or right until the edges of the grid or blockages
+  function moveLeft() {
+    undraw()
+    const leftEdge = currentTetromino.some(index => (currentPosition + index) % width === 0)
+    if (!leftEdge) {
+      currentPosition -=1
+    }
+    if (currentTetromino.some(index => squares[currentPosition + index].classList.constains('taken'))) {
+      currentPosition += 1
+    }
+    draw()
+  }
+
+  function moveRight() {
+    undraw()
+    const rightEdge = currentTetromino.some(index => (currentPosition + index) % width === width -1)
+    if (!rightEdge) {
+      currentPosition +=1
+    }
+    if (currentTetromino.some(index => squares[currentPosition + index].classList.constains('taken'))) {
+      currentPosition -= 1
+    }
+    draw()
+  }
+
+  // Rotate the Tetrominoes
+  function rotate() {
+    undraw()
+    currentRotation++
+    if (currentRotation === 4) {
+      currentRotation = 0
+    }
+    currentTetromino = theTetrominoes[randomTetromino][currentRotation]
+    draw()
   }
 
 })
