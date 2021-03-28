@@ -101,7 +101,6 @@ document.addEventListener('DOMContentLoaded', () => {
       moveDown()
     }
   }
-  document.addEventListener('keyup', control)
 
   // Make the Tetrominoes move down every second
   function moveDown() {
@@ -221,8 +220,10 @@ document.addEventListener('DOMContentLoaded', () => {
       clearInterval(timerId)
       timerId = null
       status.innerHTML = 'Pause'
+      document.removeEventListener('keyup', control)
     } else {
       status.innerHTML = 'Start'
+      document.addEventListener('keyup', control)
       draw()
       timerId = setInterval(moveDown, 800)
       nextRandom = Math.floor(Math.random() * theTetrominoes.length)
@@ -236,7 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const row = [i, i + 1, i + 2, i + 3, i + 4, i + 5, i + 6, i + 7, i + 8, i + 9, i + 10, i + 11]
       if (row.every(index => squares[index].classList.contains('taken'))) {
         score += 12
-        scoreDisplay.innerHTML = score
+        scoreDisplay.innerHTML = ` ${score}`
         row.forEach(index => {
           squares[index].classList.remove('taken')
           squares[index].classList.remove('tetromino')
