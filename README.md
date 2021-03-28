@@ -1,2 +1,4 @@
 # Tetris
- Basic Tetris game made with Javascript. Enjoy! :)
+ Basic Tetris game made with Javascript.
+
+ # Enjoy! :)
