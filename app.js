@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const width = 12
   const scoreDisplay = document.querySelector('#score')
   const startButton = document.querySelector('#start-pause')
+  const clearButton = document.querySelector('#clear')
   const status = document.querySelector('#status')
   let nextRandom = 0
   let timerId
@@ -234,7 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
       status.innerHTML = 'Start'
       document.addEventListener('keyup', control)
       draw()
-      timerId = setInterval(moveDown, 800)
+      timerId = setInterval(moveDown, 900)
       nextRandom = Math.floor(Math.random() * theTetrominoes.length)
       displayShape()
     }
@@ -265,5 +266,14 @@ document.addEventListener('DOMContentLoaded', () => {
       status.innerHTML = 'Game Over'
       clearInterval(timerId)
     }
+  }
+
+  // Restart start
+  clearButton.addEventListener('click', clear)
+  function clear() {
+    clearInterval(timerId)
+    status.innerHTML = 'Cleared'
+    document.removeEventListener('keyup', control)
+    document.location.href = ''
   }
 })

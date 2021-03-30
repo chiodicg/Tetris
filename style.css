@@ -21,6 +21,7 @@ h3 {
 button {
   background-color: #F8C56E;
   border: 1px solid black;
+  border-radius: 5%;
   margin: 10px 30px;
   padding: 0 15px;
 }
