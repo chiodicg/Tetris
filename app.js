@@ -14,11 +14,12 @@ document.addEventListener('DOMContentLoaded', () => {
     '#d66fd1',
     '#aa6203',
     '#519661',
-    '#8be04e'
+    '#8be04e',
+    '#1e1b80'
   ]
 
   // The Tetrominoes and their rotations
-  const lTetromino = [
+  const jTetromino = [
     [1, width + 1, width * 2 + 1, 2],
     [width, width + 1, width + 2, width * 2 + 2],
     [1, width + 1, width * 2 + 1, width * 2],
@@ -60,8 +61,15 @@ document.addEventListener('DOMContentLoaded', () => {
     [width + 1, width + 2, width * 2, width * 2 + 1]
   ]
 
+  const lTetromino = [
+    [0, 1, width + 1, width * 2 + 1],
+    [width, width + 1, width + 2, 2],
+    [1, width + 1, width * 2 + 1, width * 2 + 2],
+    [0, 1, 2, width]
+  ]
+
   // All Tetrominoes together
-  const theTetrominoes = [lTetromino, iTetromino, oTetromino, tTetromino, zTetromino, sTetromino]
+  const theTetrominoes = [jTetromino, iTetromino, oTetromino, tTetromino, zTetromino, sTetromino, lTetromino]
 
   let currentPosition = 5
   let currentRotation = 0
@@ -133,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!leftEdge) {
       currentPosition -= 1
     }
-    if (currentTetromino.some(index => squares[currentPosition + index].classList.constains('taken'))) {
+    if (currentTetromino.some(index => squares[currentPosition + index].classList.contains('taken'))) {
       currentPosition += 1
     }
     draw()
@@ -145,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!rightEdge) {
       currentPosition += 1
     }
-    if (currentTetromino.some(index => squares[currentPosition + index].classList.constains('taken'))) {
+    if (currentTetromino.some(index => squares[currentPosition + index].classList.contains('taken'))) {
       currentPosition -= 1
     }
     draw()
@@ -162,12 +170,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function checkRotatedPosition(P) {
     P = P || currentPosition
-    if ((P + 1) % width < 4) {
+    if ((P + 1) % width < 5) {
       if (isAtRight()) {
         currentPosition += 1
         checkRotatedPosition(P) // Check again
       }
-    } else if (P % width > 5) {
+    } else if (P % width > 6) {
       if (isAtLeft()) {
         currentPosition -= 1
         checkRotatedPosition(P)
@@ -193,12 +201,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // The Tetrominoes without rotations
   const upNextTetromino = [
-    [1, displayWidth + 1, displayWidth * 2 + 1, 2], // lTetromino
+    [1, displayWidth + 1, displayWidth * 2 + 1, 2], // jTetromino
     [displayWidth, displayWidth + 1, displayWidth + 2, displayWidth + 3], // iTetromino
     [0, 1, displayWidth, displayWidth + 1], // oTetromino
     [1, displayWidth, displayWidth + 1, displayWidth + 2], // tTetromino
     [1, displayWidth, displayWidth + 1, displayWidth * 2], // zTetromino
-    [0, displayWidth, displayWidth + 1, displayWidth * 2 + 1] // sTetromino
+    [0, displayWidth, displayWidth + 1, displayWidth * 2 + 1], // sTetromino
+    [0, 1, width + 1, width * 2 + 1] // lTetromino
   ]
   // Display the shape in the mini-grid
   function displayShape() {
