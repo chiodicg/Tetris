@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const status = document.querySelector('#status')
   let nextRandom = 0
   let timerId
+  const speed = [900, 800, 700, 600, 500, 400, 300, 200, 100, 50]
+  const level = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
   let score = 0
   const colors = [
     '#716cfc',
@@ -74,6 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let currentPosition = 5
   let currentRotation = 0
+  let currentLevel = level[0]
 
   // Randomly select a Tetromino and its first rotation
   let randomTetromino = Math.floor(Math.random() * theTetrominoes.length)
@@ -208,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
     [1, displayWidth, displayWidth + 1, displayWidth + 2], // tTetromino
     [1, displayWidth, displayWidth + 1, displayWidth * 2], // zTetromino
     [0, displayWidth, displayWidth + 1, displayWidth * 2 + 1], // sTetromino
-    [0, 1, width + 1, width * 2 + 1] // lTetromino
+    [0, 1, displayWidth + 1, displayWidth * 2 + 1] // lTetromino
   ]
   // Display the shape in the mini-grid
   function displayShape() {
@@ -232,10 +235,13 @@ document.addEventListener('DOMContentLoaded', () => {
       status.innerHTML = 'Pause'
       document.removeEventListener('keyup', control)
     } else {
-      status.innerHTML = 'Start'
+      status.innerHTML = `Level ${currentLevel}`
       document.addEventListener('keyup', control)
       draw()
-      timerId = setInterval(moveDown, 900)
+      level.forEach((item, i) => {
+
+      });
+      timerId = setInterval(moveDown, speed[currentLevel - 1])
       nextRandom = Math.floor(Math.random() * theTetrominoes.length)
       displayShape()
     }
@@ -257,6 +263,60 @@ document.addEventListener('DOMContentLoaded', () => {
         squares = squaresRemoved.concat(squares)
         squares.forEach(cell => grid.appendChild(cell))
       }
+    }
+    if (score >= 120) {
+      currentLevel = level[1]
+      status.innerHTML = `Level ${currentLevel}`
+      clearInterval(timerId)
+      timerId = setInterval(moveDown, speed[currentLevel - 1])
+    }
+    if (score >= 240) {
+      currentLevel = level[2]
+      status.innerHTML = `Level ${currentLevel}`
+      clearInterval(timerId)
+      timerId = setInterval(moveDown, speed[currentLevel - 1])
+    }
+    if (score >= 480) {
+      currentLevel = level[3]
+      status.innerHTML = `Level ${currentLevel}`
+      clearInterval(timerId)
+      timerId = setInterval(moveDown, speed[currentLevel - 1])
+    }
+    if (score >= 960) {
+      currentLevel = level[4]
+      status.innerHTML = `Level ${currentLevel}`
+      clearInterval(timerId)
+      timerId = setInterval(moveDown, speed[currentLevel - 1])
+    }
+    if (score >= 1920) {
+      currentLevel = level[5]
+      status.innerHTML = `Level ${currentLevel}`
+      clearInterval(timerId)
+      timerId = setInterval(moveDown, speed[currentLevel - 1])
+    }
+    if (score >= 3840) {
+      currentLevel = level[6]
+      status.innerHTML = `Level ${currentLevel}`
+      clearInterval(timerId)
+      timerId = setInterval(moveDown, speed[currentLevel - 1])
+    }
+    if (score >= 7680) {
+      currentLevel = level[7]
+      status.innerHTML = `Level ${currentLevel}`
+      clearInterval(timerId)
+      timerId = setInterval(moveDown, speed[currentLevel - 1])
+    }
+    if (score >= 15360) {
+      currentLevel = level[8]
+      status.innerHTML = `Level ${currentLevel}`
+      clearInterval(timerId)
+      timerId = setInterval(moveDown, speed[currentLevel - 1])
+    }
+    if (score >= 30720) {
+      currentLevel = level[9]
+      status.innerHTML = `Level ${currentLevel}`
+      clearInterval(timerId)
+      timerId = setInterval(moveDown, speed[currentLevel - 1])
     }
   }
 
