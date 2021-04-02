@@ -233,10 +233,10 @@ document.addEventListener('DOMContentLoaded', () => {
       clearInterval(timerId)
       timerId = null
       status.innerHTML = 'Pause'
-      document.removeEventListener('keyup', control)
+      document.removeEventListener('keydown', control)
     } else {
       status.innerHTML = `Level ${currentLevel}`
-      document.addEventListener('keyup', control)
+      document.addEventListener('keydown', control)
       draw()
       level.forEach((item, i) => {
 
@@ -331,9 +331,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Restart start
   clearButton.addEventListener('click', clear)
   function clear() {
-    clearInterval(timerId)
-    status.innerHTML = 'Cleared'
-    document.removeEventListener('keyup', control)
     document.location.href = ''
   }
 })
